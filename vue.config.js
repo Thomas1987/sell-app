@@ -1,5 +1,5 @@
 const path = require('path')
-const appData = require('../sell_app/data')
+const appData = require('../sell-app/data')
 const seller = appData.seller
 const goods = appData.goods
 const ratings = appData.ratings
