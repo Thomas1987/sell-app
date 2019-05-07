@@ -37,6 +37,7 @@
           </li>
         </ul>
       </div>
+      <shopcart></shopcart>
     </div>
   </div>
 </template>
@@ -44,6 +45,7 @@
 <script>
 import { getGoods } from 'api'
 import BScroll from 'better-scroll'
+import shopcart from '../../components/shopcart/shopcart.vue'
 export default {
   name: 'goods',
   props: {
@@ -120,6 +122,9 @@ export default {
       let el = menuList[index]
       this.meunScroll.scrollToElement(el, 300, 0, -100)
     }
+  },
+  components: {
+    shopcart
   }
 }
 
