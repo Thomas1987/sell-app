@@ -7,14 +7,14 @@
           <div class="logo" :class="{'highlight':totalCount>0}">
             <i class="icon-shopping_cart" :class="{'highlight':totalCount>0}"></i>
           </div>
-          <div class="num" v-show="totalCount>0">1</div>
+          <div class="num" v-show="totalCount>0">{{totalCount}}</div>
         </div>
         <div class="price">{{totalPrice}}元</div>
         <div class="desc">另需配送费￥{{deliveryPrice}}元</div>
       </div>
-      <div class="content-right">
-        <div class="pay">
-          ￥{{minPrice}}起送
+      <div class="content-right" >
+        <div class="pay" :class="payClass">
+          {{payDesc}}
         </div>
       </div>
     </div>
@@ -65,6 +65,23 @@ export default {
         count += food.count
       })
       return count
+    },
+    payDesc() {
+      if (this.totalPrice === 0) {
+        return `￥${this.minPrice}元起送`
+      } else if (this.totalPrice < this.minPrice) {
+        let diff = this.minPrice - this.totalPrice
+        return `还差￥${diff}元起送`
+      } else {
+        return '去结算'
+      }
+    },
+    payClass() {
+      if (this.totalPrice < this.minPrice) {
+        return 'not-enough'
+      } else {
+        return 'enough'
+      }
     }
   },
   methods: {}
@@ -148,10 +165,15 @@ export default {
         flex:0 0 105px
         width:105px
         .pay
-          height :48px
-          line-height :48px
-          text-align:center
-          font-size:12px
-          font-weight:700
-          background:#2b333b
+          height: 48px
+          line-height: 48px
+          text-align: center
+          font-size: 12px
+          font-weight: 700
+          &.not-enough
+            background: #2b333b
+          &.enough
+            background: #00b43c
+            color: #fff
+
 </style>
