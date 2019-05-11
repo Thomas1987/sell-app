@@ -7,11 +7,12 @@
       </div>
     </transition>
     <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
-    <div class="cart-add icon-add_circle" @click="addCart"></div>
+    <div class="cart-add icon-add_circle" @click="add"></div>
   </div>
 </template>
 
 <script>
+const ENVET_ADD = 'add'
 export default {
   name: '',
   props: {
@@ -31,14 +32,14 @@ export default {
   computed: {},
 
   methods: {
-    addCart() {
-      console.log('click')
+    add(envet) {
       if (!this.food.count) {
         // 通过set 来改变属性 这样vue才能检测到不存在的属性的变化
         this.$set(this.food, 'count', 1)
       } else {
         this.food.count++
       }
+      this.$emit(ENVET_ADD, event.target)
     },
     decreaseCart() {
       if (this.food.count > 0) {
