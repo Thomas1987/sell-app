@@ -303,6 +303,10 @@ module.exports = {
     }],
     // 强制数组方括号中使用一致的空格
     'array-bracket-spacing': [2, 'never']
+    // 禁止在计算属性中对属性修改
+    // @off 太严格了
+    // 'vue/no-side-effects-in-computed-properties': 'off'
+
   },
   parserOptions: {
     parser: 'babel-eslint'

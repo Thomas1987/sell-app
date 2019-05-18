@@ -1,6 +1,6 @@
 <template>
   <div class="shopcart">
-    <div class="content">
+    <div class="content" @click="toggleList">
       <div class="content-left">
         <div class="logo-wrapper">
           <div class="logo" :class="{'highlight':totalCount>0}">
@@ -91,7 +91,8 @@ export default {
           show: false
         }
       ],
-      dropBalls: []
+      dropBalls: [],
+      fold: true
     }
   },
   components: {},
@@ -127,6 +128,14 @@ export default {
       } else {
         return 'enough'
       }
+    },
+    listShow() {
+      if (!this.totalCount) {
+        // this.fold = true
+        return false
+      }
+      let show = !this.fold
+      return show
     }
   },
   methods: {
@@ -176,6 +185,20 @@ export default {
       if (ball) {
         ball.show = false
         el.style.display = 'none'
+      }
+    },
+    toggleList() {
+      if (!this.totalCount) {
+        return false
+      }
+      this.fold = !this.fold
+    }
+  },
+  // 监听选中的商品的数量变化
+  watch: {
+    selectFoods(newFoods, oldFoods) {
+      if (newFoods.length === 0) {
+        this.fold = true
       }
     }
   }
@@ -282,5 +305,14 @@ export default {
         border-radius: 50%
         background: rgb(0, 160, 220)
         transition: all 0.4s linear
+    .shopcart-list
+      position:absolute
+      top:0
+      left:0
+      z-index:-1
+      width:100%
+      &.fold-transtion
+        transition :all 0.5s
+        transform :translate3d(0,-100%,0)
 
 </style>
