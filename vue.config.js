@@ -3,12 +3,15 @@ const appData = require('./src/data/data')
 const seller = appData.seller
 const goods = appData.goods
 const ratings = appData.ratings
-
+const BASE_URL = process.env.NODE_ENV === 'production'
+  ? '/sell-app-build'
+  : '/'
 const resolve = dir => {
   return path.join(__dirname, dir)
 }
 module.exports = {
   lintOnSave: true,
+  publicPath: BASE_URL,
   chainWebpack: config => {
     config.resolve.alias
       .set('@', resolve('src'))

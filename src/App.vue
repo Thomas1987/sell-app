@@ -17,7 +17,8 @@
 </template>
 <script>
 import header from './components/header/'
-import { getSeller } from 'api'
+// import { getSeller } from 'api'
+const appData = require('./data/data')
 export default {
   data() {
     return {
@@ -32,9 +33,10 @@ export default {
   },
   methods: {
     _getSeller() {
-      getSeller().then((seller) => {
-        this.seller = seller
-      })
+      this.seller = appData.seller
+      // getSeller().then((seller) => {
+
+      // })
     }
   }
 

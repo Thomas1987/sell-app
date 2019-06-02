@@ -145,7 +145,6 @@ export default {
         if (!ball.show) {
           ball.show = true
           ball.el = el
-          console.log(ball)
           this.dropBalls.push(ball)
           return
         }

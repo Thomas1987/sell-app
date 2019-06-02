@@ -47,10 +47,11 @@
 </template>
 
 <script>
-import { getGoods } from 'api'
+// import { getGoods } from 'api'
 import BScroll from 'better-scroll'
 import shopcart from '../../components/shopcart/shopcart'
 import cartcontrol from '../../components/cartcontrol/cartcontrol'
+const appData = require('../../data/data')
 export default {
   name: 'goods',
   props: {
@@ -98,12 +99,10 @@ export default {
   },
   methods: {
     _getGoods() {
-      getGoods().then((goods) => {
-        this.goods = goods
-        this.$nextTick(() => {
-          this._initScroll()
-          this._calculateHeight()
-        })
+      this.goods = appData.goods
+      this.$nextTick(() => {
+        this._initScroll()
+        this._calculateHeight()
       })
     },
     onAdd(el) {
